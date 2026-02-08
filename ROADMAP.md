@@ -12,10 +12,10 @@ Documento que detalla las fases de desarrollo del proyecto One Piece TCG.
 - [x] Crear repositorio en GitHub
 - [x] Documentar README inicial
 - [x] Investigar APIs disponibles
-- [ ] Configurar proyecto Godot 4
-- [ ] Configurar .gitignore para Godot
-- [ ] Establecer estructura de carpetas base
-- [ ] Crear documento de diseño técnico (GDD)
+- [x] Configurar proyecto Godot 4
+- [x] Configurar .gitignore para Godot
+- [x] Establecer estructura de carpetas base
+- [x] Crear documento de diseño técnico (GDD)
 
 ---
 
