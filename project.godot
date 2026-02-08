@@ -8,12 +8,16 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="One Piece TCG"
 config/description="Un juego de cartas coleccionables digital basado en el universo de One Piece"
-run/main_scene="res://scenes/main_menu.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+run/main_scene="uid://bw8yqvx4rj8pm"
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
@@ -23,7 +27,11 @@ window/size/viewport_height=1080
 window/size/mode=2
 window/stretch/mode="canvas_items"
 
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
 [rendering]
 
-renderer/rendering_method="forward_plus"
 textures/canvas_textures/default_texture_filter=2
+rendering_device/driver.windows="d3d12"
