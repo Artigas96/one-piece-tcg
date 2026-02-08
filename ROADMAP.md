@@ -5,7 +5,7 @@ Documento que detalla las fases de desarrollo del proyecto One Piece TCG.
 ---
 
 ## 📋 Fase 0: Configuración Inicial
-**Estado:** 🟢 En progreso  
+**Estado:** 🔵 Terminado  
 **Duración estimada:** 1 semana
 
 ### Tareas
