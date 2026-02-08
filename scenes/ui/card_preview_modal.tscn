@@ -1,0 +1,242 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8vx2m3n4p5q6"]
+
+[ext_resource type="Script" path="res://scripts/ui/card_preview_modal.gd" id="1_1"]
+
+[node name="CardPreviewModal" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1")
+
+[node name="DarkOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PreviewPanel" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(800, 900)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PreviewPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PreviewPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TopBar" type="HBoxContainer" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CardName" type="Label" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "Card Name"
+
+[node name="CloseButton" type="Button" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/TopBar"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "✕"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ContentHBox" type="HBoxContainer" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="LeftPanel" type="VBoxContainer" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="CardImageContainer" type="PanelContainer" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/LeftPanel"]
+custom_minimum_size = Vector2(350, 500)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/LeftPanel/CardImageContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="CardImage" type="TextureRect" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/LeftPanel/CardImageContainer/MarginContainer"]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ImagePlaceholder" type="ColorRect" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/LeftPanel/CardImageContainer/MarginContainer/CardImage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3, 0.3, 0.35, 1)
+
+[node name="PlaceholderLabel" type="Label" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/LeftPanel/CardImageContainer/MarginContainer/CardImage/ImagePlaceholder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "🖼️ Imagen"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorIndicator" type="ColorRect" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/LeftPanel/CardImageContainer/MarginContainer/CardImage"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+
+[node name="SetInfo" type="Label" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/LeftPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Set: OP01 - Romance Dawn"
+horizontal_alignment = 1
+
+[node name="RightPanel" type="VBoxContainer" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="StatsGrid" type="GridContainer" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/RightPanel"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 15
+columns = 2
+
+[node name="TypeLabel" type="Label" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/RightPanel/StatsGrid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Tipo:"
+
+[node name="TypeValue" type="Label" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/RightPanel/StatsGrid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Character"
+
+[node name="ColorLabel" type="Label" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/RightPanel/StatsGrid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Color:"
+
+[node name="ColorValue" type="Label" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/RightPanel/StatsGrid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Red"
+
+[node name="CostLabel" type="Label" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/RightPanel/StatsGrid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Coste:"
+
+[node name="CostValue" type="Label" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/RightPanel/StatsGrid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "3"
+
+[node name="PowerLabel" type="Label" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/RightPanel/StatsGrid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Poder:"
+
+[node name="PowerValue" type="Label" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/RightPanel/StatsGrid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "4000"
+
+[node name="CounterLabel" type="Label" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/RightPanel/StatsGrid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Counter:"
+
+[node name="CounterValue" type="Label" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/RightPanel/StatsGrid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "1000"
+
+[node name="RarityLabel" type="Label" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/RightPanel/StatsGrid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Rareza:"
+
+[node name="RarityValue" type="Label" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/RightPanel/StatsGrid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "SR"
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/RightPanel"]
+layout_mode = 2
+
+[node name="AttributesLabel" type="Label" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/RightPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "⚔️ Atributos"
+
+[node name="AttributesValue" type="Label" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/RightPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Straw Hat Crew, Supernova"
+autowrap_mode = 3
+
+[node name="HSeparator3" type="HSeparator" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/RightPanel"]
+layout_mode = 2
+
+[node name="EffectLabel" type="Label" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/RightPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "✨ Efecto"
+
+[node name="EffectScrollContainer" type="ScrollContainer" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/RightPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EffectText" type="Label" parent="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/ContentHBox/RightPanel/EffectScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 16
+text = "[DON!! x1] [When Attacking] Give this Character +1000 power during this battle."
+autowrap_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xxxxx")
+}
+
+[connection signal="pressed" from="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/TopBar/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="gui_input" from="DarkOverlay" to="." method="_on_overlay_gui_input"]

@@ -1,7 +1,7 @@
 extends Control
 
-## Pantalla de colección
-## Muestra todas las cartas disponibles en un grid
+## Pantalla de colección mejorada
+## Muestra todas las cartas disponibles en un grid con preview modal
 
 # Referencias a nodos
 @onready var cards_grid: GridContainer = $MarginContainer/VBoxContainer/ScrollContainer/CardsGrid
@@ -13,8 +13,12 @@ extends Control
 @onready var loading_label: Label = $MarginContainer/VBoxContainer/LoadingLabel
 @onready var no_cards_label: Label = $MarginContainer/VBoxContainer/NoCardsLabel
 
-# Escena de carta
+# Escenas
 const CARD_SCENE = preload("res://scenes/ui/card.tscn")
+const PREVIEW_MODAL_SCENE = preload("res://scenes/ui/card_preview_modal.tscn")
+
+# Modal de preview
+var preview_modal: CardPreviewModal = null
 
 # Datos
 var all_cards: Array[Dictionary] = []
@@ -28,8 +32,16 @@ var current_rarity_filter: String = ""
 
 func _ready() -> void:
 	print("Pantalla de colección cargada")
+	_setup_preview_modal()
 	_load_sample_cards()
 	_display_cards()
+
+## Configurar modal de preview
+func _setup_preview_modal() -> void:
+	preview_modal = PREVIEW_MODAL_SCENE.instantiate()
+	add_child(preview_modal)
+	preview_modal.visible = false
+	preview_modal.closed.connect(_on_preview_modal_closed)
 
 ## Cargar cartas de ejemplo (temporalmente hasta tener API)
 func _load_sample_cards() -> void:
@@ -44,8 +56,13 @@ func _load_sample_cards() -> void:
 			"color": ["Red"],
 			"cost": 0,
 			"power": 5000,
+			"counter": 0,
+			"attribute": ["Straw Hat Crew", "Supernova"],
+			"effect": "[DON!! x1] [When Attacking] Give this Leader or 1 of your Characters +1000 power during this battle.",
 			"rarity": "L",
-			"set_code": "OP01"
+			"set_name": "Romance Dawn",
+			"set_code": "OP01",
+			"card_number": "001"
 		},
 		{
 			"id": "OP01-002",
@@ -54,8 +71,13 @@ func _load_sample_cards() -> void:
 			"color": ["Green"],
 			"cost": 3,
 			"power": 4000,
+			"counter": 1000,
+			"attribute": ["Straw Hat Crew", "Swordsman"],
+			"effect": "[DON!! x1] [When Attacking] If your Leader has the {Straw Hat Crew} type, this Character gains +1000 power during this battle.",
 			"rarity": "SR",
-			"set_code": "OP01"
+			"set_name": "Romance Dawn",
+			"set_code": "OP01",
+			"card_number": "002"
 		},
 		{
 			"id": "OP01-003",
@@ -64,8 +86,13 @@ func _load_sample_cards() -> void:
 			"color": ["Blue"],
 			"cost": 2,
 			"power": 3000,
+			"counter": 1000,
+			"attribute": ["Straw Hat Crew"],
+			"effect": "[On Play] Look at 3 cards from the top of your deck; reveal up to 1 {Straw Hat Crew} type card and add it to your hand. Then, place the rest at the bottom of your deck in any order.",
 			"rarity": "R",
-			"set_code": "OP01"
+			"set_name": "Romance Dawn",
+			"set_code": "OP01",
+			"card_number": "003"
 		},
 		{
 			"id": "OP01-004",
@@ -74,8 +101,13 @@ func _load_sample_cards() -> void:
 			"color": ["Yellow"],
 			"cost": 2,
 			"power": 2000,
+			"counter": 2000,
+			"attribute": ["Straw Hat Crew", "Sniper"],
+			"effect": "[Blocker] (After your opponent declares an attack, you may rest this card to make it the new target of the attack.)",
 			"rarity": "UC",
-			"set_code": "OP01"
+			"set_name": "Romance Dawn",
+			"set_code": "OP01",
+			"card_number": "004"
 		},
 		{
 			"id": "OP01-005",
@@ -84,8 +116,13 @@ func _load_sample_cards() -> void:
 			"color": ["Blue"],
 			"cost": 4,
 			"power": 5000,
+			"counter": 1000,
+			"attribute": ["Straw Hat Crew"],
+			"effect": "[DON!! x1] [Your Turn] This Character gains +1000 power.",
 			"rarity": "SR",
-			"set_code": "OP01"
+			"set_name": "Romance Dawn",
+			"set_code": "OP01",
+			"card_number": "005"
 		},
 		{
 			"id": "OP01-006",
@@ -94,14 +131,52 @@ func _load_sample_cards() -> void:
 			"color": ["Red"],
 			"cost": 1,
 			"power": 0,
+			"counter": 0,
+			"attribute": ["Straw Hat Crew"],
+			"effect": "[Main] Give up to 1 of your Leader or Character cards +3000 power during this turn.",
 			"rarity": "C",
-			"set_code": "OP01"
+			"set_name": "Romance Dawn",
+			"set_code": "OP01",
+			"card_number": "006"
+		},
+		{
+			"id": "OP01-007",
+			"name": "Going Merry",
+			"card_type": "Stage",
+			"color": ["Red"],
+			"cost": 2,
+			"power": 0,
+			"counter": 0,
+			"attribute": ["Straw Hat Crew"],
+			"effect": "[Activate: Main] You may rest this Stage: Add 1 card from the top of your Life cards to your hand.",
+			"rarity": "C",
+			"set_name": "Romance Dawn",
+			"set_code": "OP01",
+			"card_number": "007"
+		},
+		{
+			"id": "OP01-008",
+			"name": "Nico Robin",
+			"card_type": "Character",
+			"color": ["Purple"],
+			"cost": 4,
+			"power": 5000,
+			"counter": 1000,
+			"attribute": ["Straw Hat Crew"],
+			"effect": "[On Play] Draw 1 card.",
+			"rarity": "R",
+			"set_name": "Romance Dawn",
+			"set_code": "OP01",
+			"card_number": "008"
 		},
 	]
 	
 	# Duplicar para tener más cartas de prueba
-	for i in range(3):
-		all_cards.append_array(sample_cards.duplicate(true))
+	for i in range(4):
+		for card in sample_cards:
+			var duplicated_card = card.duplicate(true)
+			duplicated_card["id"] = card["id"] + "_copy" + str(i)
+			all_cards.append(duplicated_card)
 	
 	displayed_cards = all_cards.duplicate()
 	_update_stats()
@@ -187,12 +262,18 @@ func _on_rarity_filter_changed(index: int) -> void:
 
 ## Callbacks de cartas
 func _on_card_clicked(card: Card) -> void:
-	print("Carta clickeada: ", card.get_card_data())
-	# TODO: Mostrar preview grande de la carta
+	print("Carta clickeada: ", card.get_card_data().get("name", "Unknown"))
+	# Mostrar modal de preview
+	if preview_modal:
+		preview_modal.show_card(card.get_card_data())
 
 func _on_card_hovered(card: Card) -> void:
-	# TODO: Mostrar tooltip o info adicional
+	# TODO: Mostrar tooltip o info adicional en el futuro
 	pass
+
+## Modal cerrado
+func _on_preview_modal_closed() -> void:
+	print("Preview modal cerrado")
 
 ## Volver al menú principal
 func _on_back_button_pressed() -> void:
