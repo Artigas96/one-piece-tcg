@@ -20,6 +20,13 @@ run/main_scene="uid://bw8yqvx4rj8pm"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SceneTransition="*res://scenes/autoload/scene_transition.tscn"
+APIService="*res://scripts/autoload/api_service.gd"
+CardDatabase="*res://scripts/autoload/card_database.gd"
+ImageLoader="*res://scripts/autoload/image_loader.gd"
+
 [display]
 
 window/size/viewport_width=1920
