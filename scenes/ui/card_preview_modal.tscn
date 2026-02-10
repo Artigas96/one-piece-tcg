@@ -234,9 +234,6 @@ text = "[DON!! x1] [When Attacking] Give this Character +1000 power during this 
 autowrap_mode = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_xxxxx")
-}
 
 [connection signal="pressed" from="CenterContainer/PreviewPanel/MarginContainer/VBoxContainer/TopBar/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="gui_input" from="DarkOverlay" to="." method="_on_overlay_gui_input"]

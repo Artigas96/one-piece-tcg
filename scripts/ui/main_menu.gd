@@ -65,8 +65,9 @@ func _on_play_button_pressed() -> void:
 func _on_collection_button_pressed() -> void:
 	print("Botón Colección presionado")
 	# Usar sistema de transiciones si está disponible
-	if has_node("/root/SceneTransition"):
-		SceneTransition.change_scene("res://scenes/collection/collection_screen.tscn")
+	var scene_transition = get_node_or_null("/root/SceneTransition")
+	if scene_transition:
+		scene_transition.change_scene("res://scenes/collection/collection_screen.tscn")
 	else:
 		get_tree().change_scene_to_file("res://scenes/collection/collection_screen.tscn")
 
