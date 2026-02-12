@@ -1,0 +1,648 @@
+{
+  "sets": [
+    {
+      "code": "OP01",
+      "name": "Romance Dawn",
+      "release_date": "2022-07-08"
+    },
+    {
+      "code": "OP02",
+      "name": "Paramount War",
+      "release_date": "2022-09-30"
+    },
+    {
+      "code": "OP03",
+      "name": "Pillars of Strength",
+      "release_date": "2022-12-02"
+    },
+    {
+      "code": "OP04",
+      "name": "Kingdoms of Intrigue",
+      "release_date": "2023-02-25"
+    },
+    {
+      "code": "OP05",
+      "name": "Awakening of the New Era",
+      "release_date": "2023-05-27"
+    },
+    {
+      "code": "OP06",
+      "name": "Wings of the Captain",
+      "release_date": "2023-09-22"
+    },
+    {
+      "code": "OP07",
+      "name": "500 Years in the Future",
+      "release_date": "2024-02-24"
+    },
+    {
+      "code": "OP08",
+      "name": "Two Legends",
+      "release_date": "2024-05-25"
+    },
+    {
+      "code": "ST01",
+      "name": "Straw Hat Crew",
+      "release_date": "2022-07-08"
+    },
+    {
+      "code": "ST02",
+      "name": "Worst Generation",
+      "release_date": "2022-07-08"
+    },
+    {
+      "code": "ST03",
+      "name": "The Seven Warlords of the Sea",
+      "release_date": "2022-09-30"
+    },
+    {
+      "code": "ST04",
+      "name": "Animal Kingdom Pirates",
+      "release_date": "2022-12-02"
+    },
+    {
+      "code": "ST05",
+      "name": "One Piece Film Edition",
+      "release_date": "2022-11-04"
+    },
+    {
+      "code": "ST06",
+      "name": "Navy",
+      "release_date": "2023-02-25"
+    },
+    {
+      "code": "ST07",
+      "name": "Big Mom Pirates",
+      "release_date": "2023-05-27"
+    },
+    {
+      "code": "ST08",
+      "name": "Monkey D. Luffy",
+      "release_date": "2023-07-28"
+    },
+    {
+      "code": "ST09",
+      "name": "Yamato",
+      "release_date": "2023-09-22"
+    },
+    {
+      "code": "ST10",
+      "name": "Uta",
+      "release_date": "2023-09-22"
+    }
+  ],
+  "cards": [
+    {
+      "id": "OP01-001",
+      "name": "Monkey D. Luffy",
+      "card_type": "Leader",
+      "color": [
+        "Red"
+      ],
+      "cost": 0,
+      "power": 5000,
+      "counter": 0,
+      "attribute": [
+        "Straw Hat Crew"
+      ],
+      "effect": "[DON!! x1] [When Attacking] Give up to 1 of your Leader or Character cards +1000 power during this battle.",
+      "rarity": "L",
+      "set_name": "Romance Dawn",
+      "set_code": "OP01",
+      "card_number": "001",
+      "image": ""
+    },
+    {
+      "id": "OP01-002",
+      "name": "Roronoa Zoro",
+      "card_type": "Character",
+      "color": [
+        "Red"
+      ],
+      "cost": 3,
+      "power": 4000,
+      "counter": 1000,
+      "attribute": [
+        "Straw Hat Crew",
+        "Supernovas"
+      ],
+      "effect": "[DON!! x1] [When Attacking] Give this Character +1000 power during this battle.",
+      "rarity": "SR",
+      "set_name": "Romance Dawn",
+      "set_code": "OP01",
+      "card_number": "002",
+      "image": ""
+    },
+    {
+      "id": "OP01-003",
+      "name": "Nami",
+      "card_type": "Character",
+      "color": [
+        "Red"
+      ],
+      "cost": 1,
+      "power": 2000,
+      "counter": 1000,
+      "attribute": [
+        "Straw Hat Crew"
+      ],
+      "effect": "[On Play] Look at 3 cards from the top of your deck; reveal up to 1 {Straw Hat Crew} type card and add it to your hand.",
+      "rarity": "R",
+      "set_name": "Romance Dawn",
+      "set_code": "OP01",
+      "card_number": "003",
+      "image": ""
+    },
+    {
+      "id": "OP01-004",
+      "name": "Usopp",
+      "card_type": "Character",
+      "color": [
+        "Red"
+      ],
+      "cost": 2,
+      "power": 3000,
+      "counter": 1000,
+      "attribute": [
+        "Straw Hat Crew"
+      ],
+      "effect": "[Blocker]",
+      "rarity": "UC",
+      "set_name": "Romance Dawn",
+      "set_code": "OP01",
+      "card_number": "004",
+      "image": ""
+    },
+    {
+      "id": "OP01-005",
+      "name": "Sanji",
+      "card_type": "Character",
+      "color": [
+        "Red"
+      ],
+      "cost": 4,
+      "power": 5000,
+      "counter": 0,
+      "attribute": [
+        "Straw Hat Crew"
+      ],
+      "effect": "[On Play] K.O. up to 1 of your opponent's Characters with 3000 power or less.",
+      "rarity": "SR",
+      "set_name": "Romance Dawn",
+      "set_code": "OP01",
+      "card_number": "005",
+      "image": ""
+    },
+    {
+      "id": "OP01-006",
+      "name": "Tony Tony Chopper",
+      "card_type": "Character",
+      "color": [
+        "Red"
+      ],
+      "cost": 1,
+      "power": 1000,
+      "counter": 2000,
+      "attribute": [
+        "Straw Hat Crew",
+        "Animal"
+      ],
+      "effect": "[Counter] Up to 1 of your Leader or Character cards gains +2000 power during this battle.",
+      "rarity": "C",
+      "set_name": "Romance Dawn",
+      "set_code": "OP01",
+      "card_number": "006",
+      "image": ""
+    },
+    {
+      "id": "OP01-007",
+      "name": "Nico Robin",
+      "card_type": "Character",
+      "color": [
+        "Red"
+      ],
+      "cost": 3,
+      "power": 4000,
+      "counter": 1000,
+      "attribute": [
+        "Straw Hat Crew"
+      ],
+      "effect": "[On Play] Draw 1 card if you have 3 or less cards in your hand.",
+      "rarity": "R",
+      "set_name": "Romance Dawn",
+      "set_code": "OP01",
+      "card_number": "007",
+      "image": ""
+    },
+    {
+      "id": "OP01-008",
+      "name": "Franky",
+      "card_type": "Character",
+      "color": [
+        "Red"
+      ],
+      "cost": 3,
+      "power": 3000,
+      "counter": 2000,
+      "attribute": [
+        "Straw Hat Crew"
+      ],
+      "effect": "[Blocker] [On Block] Give up to 1 of your Leader or Character cards +2000 power during this battle.",
+      "rarity": "UC",
+      "set_name": "Romance Dawn",
+      "set_code": "OP01",
+      "card_number": "008",
+      "image": ""
+    },
+    {
+      "id": "OP01-009",
+      "name": "Brook",
+      "card_type": "Character",
+      "color": [
+        "Red"
+      ],
+      "cost": 2,
+      "power": 2000,
+      "counter": 1000,
+      "attribute": [
+        "Straw Hat Crew"
+      ],
+      "effect": "[On Play] Draw 1 card and trash 1 card from your hand.",
+      "rarity": "C",
+      "set_name": "Romance Dawn",
+      "set_code": "OP01",
+      "card_number": "009",
+      "image": ""
+    },
+    {
+      "id": "OP01-010",
+      "name": "Portgas D. Ace",
+      "card_type": "Character",
+      "color": [
+        "Red"
+      ],
+      "cost": 5,
+      "power": 6000,
+      "counter": 0,
+      "attribute": [
+        "Whitebeard Pirates"
+      ],
+      "effect": "[DON!! x1] This Character gains +1000 power.",
+      "rarity": "SR",
+      "set_name": "Romance Dawn",
+      "set_code": "OP01",
+      "card_number": "010",
+      "image": ""
+    },
+    {
+      "id": "OP01-011",
+      "name": "Shanks",
+      "card_type": "Character",
+      "color": [
+        "Red"
+      ],
+      "cost": 9,
+      "power": 10000,
+      "counter": 0,
+      "attribute": [
+        "The Four Emperors",
+        "Red-Haired Pirates"
+      ],
+      "effect": "[On Play] K.O. up to 1 of your opponent's Characters with 8000 power or less.",
+      "rarity": "SEC",
+      "set_name": "Romance Dawn",
+      "set_code": "OP01",
+      "card_number": "011",
+      "image": ""
+    },
+    {
+      "id": "OP01-012",
+      "name": "Gum-Gum Pistol",
+      "card_type": "Event",
+      "color": [
+        "Red"
+      ],
+      "cost": 1,
+      "power": 0,
+      "counter": 0,
+      "attribute": [
+        "Straw Hat Crew"
+      ],
+      "effect": "[Main] K.O. up to 1 of your opponent's Characters with 3000 power or less.",
+      "rarity": "C",
+      "set_name": "Romance Dawn",
+      "set_code": "OP01",
+      "card_number": "012",
+      "image": ""
+    },
+    {
+      "id": "OP01-013",
+      "name": "Thousand Sunny",
+      "card_type": "Stage",
+      "color": [
+        "Red"
+      ],
+      "cost": 1,
+      "power": 0,
+      "counter": 0,
+      "attribute": [
+        "Straw Hat Crew"
+      ],
+      "effect": "[Activate: Main] You may rest this Stage: Draw 1 card and trash 1 card from your hand.",
+      "rarity": "R",
+      "set_name": "Romance Dawn",
+      "set_code": "OP01",
+      "card_number": "013",
+      "image": ""
+    },
+    {
+      "id": "OP01-014",
+      "name": "Trafalgar Law",
+      "card_type": "Leader",
+      "color": [
+        "Blue"
+      ],
+      "cost": 0,
+      "power": 5000,
+      "counter": 0,
+      "attribute": [
+        "Heart Pirates",
+        "Supernovas"
+      ],
+      "effect": "[DON!! x1] [When Attacking] Draw 1 card and trash 1 card from your hand.",
+      "rarity": "L",
+      "set_name": "Romance Dawn",
+      "set_code": "OP01",
+      "card_number": "014",
+      "image": ""
+    },
+    {
+      "id": "OP01-015",
+      "name": "Bepo",
+      "card_type": "Character",
+      "color": [
+        "Blue"
+      ],
+      "cost": 2,
+      "power": 3000,
+      "counter": 1000,
+      "attribute": [
+        "Heart Pirates",
+        "Animal"
+      ],
+      "effect": "[On Play] Draw 1 card and trash 1 card from your hand.",
+      "rarity": "C",
+      "set_name": "Romance Dawn",
+      "set_code": "OP01",
+      "card_number": "015",
+      "image": ""
+    },
+    {
+      "id": "OP01-016",
+      "name": "Boa Hancock",
+      "card_type": "Character",
+      "color": [
+        "Blue"
+      ],
+      "cost": 4,
+      "power": 5000,
+      "counter": 0,
+      "attribute": [
+        "The Seven Warlords of the Sea",
+        "Kuja Pirates"
+      ],
+      "effect": "[On Play] Return up to 1 Character with a cost of 3 or less to the owner's hand.",
+      "rarity": "SR",
+      "set_name": "Romance Dawn",
+      "set_code": "OP01",
+      "card_number": "016",
+      "image": ""
+    },
+    {
+      "id": "OP01-017",
+      "name": "Donquixote Doflamingo",
+      "card_type": "Character",
+      "color": [
+        "Blue"
+      ],
+      "cost": 5,
+      "power": 6000,
+      "counter": 0,
+      "attribute": [
+        "The Seven Warlords of the Sea",
+        "Donquixote Pirates"
+      ],
+      "effect": "[On Play] Return up to 1 Character with a cost of 4 or less to the owner's hand.",
+      "rarity": "R",
+      "set_name": "Romance Dawn",
+      "set_code": "OP01",
+      "card_number": "017",
+      "image": ""
+    },
+    {
+      "id": "OP01-018",
+      "name": "Crocodile",
+      "card_type": "Character",
+      "color": [
+        "Blue"
+      ],
+      "cost": 7,
+      "power": 8000,
+      "counter": 0,
+      "attribute": [
+        "The Seven Warlords of the Sea",
+        "Baroque Works"
+      ],
+      "effect": "[On Play] Return up to 1 Character with a cost of 5 or less to the owner's hand.",
+      "rarity": "R",
+      "set_name": "Romance Dawn",
+      "set_code": "OP01",
+      "card_number": "018",
+      "image": ""
+    },
+    {
+      "id": "OP01-019",
+      "name": "Jinbe",
+      "card_type": "Character",
+      "color": [
+        "Blue"
+      ],
+      "cost": 3,
+      "power": 4000,
+      "counter": 1000,
+      "attribute": [
+        "Fish-Man",
+        "Straw Hat Crew"
+      ],
+      "effect": "[Blocker]",
+      "rarity": "UC",
+      "set_name": "Romance Dawn",
+      "set_code": "OP01",
+      "card_number": "019",
+      "image": ""
+    },
+    {
+      "id": "OP01-020",
+      "name": "Dracule Mihawk",
+      "card_type": "Character",
+      "color": [
+        "Blue"
+      ],
+      "cost": 9,
+      "power": 10000,
+      "counter": 0,
+      "attribute": [
+        "The Seven Warlords of the Sea"
+      ],
+      "effect": "[On Play] Return all Characters with a cost of 7 or less to the owner's hand.",
+      "rarity": "SEC",
+      "set_name": "Romance Dawn",
+      "set_code": "OP01",
+      "card_number": "020",
+      "image": ""
+    },
+    {
+      "id": "OP02-001",
+      "name": "Edward Newgate",
+      "card_type": "Leader",
+      "color": [
+        "Red"
+      ],
+      "cost": 0,
+      "power": 5000,
+      "counter": 0,
+      "attribute": [
+        "The Four Emperors",
+        "Whitebeard Pirates"
+      ],
+      "effect": "[Activate: Main] [Once Per Turn] Give up to 1 of your {Whitebeard Pirates} type Characters +2000 power during this turn.",
+      "rarity": "L",
+      "set_name": "Paramount War",
+      "set_code": "OP02",
+      "card_number": "001",
+      "image": ""
+    },
+    {
+      "id": "OP02-002",
+      "name": "Portgas D. Ace",
+      "card_type": "Character",
+      "color": [
+        "Red"
+      ],
+      "cost": 2,
+      "power": 3000,
+      "counter": 1000,
+      "attribute": [
+        "Whitebeard Pirates"
+      ],
+      "effect": "[On Play] Look at 3 cards from the top of your deck and place them at the top or bottom of the deck in any order.",
+      "rarity": "SR",
+      "set_name": "Paramount War",
+      "set_code": "OP02",
+      "card_number": "002",
+      "image": ""
+    },
+    {
+      "id": "OP02-003",
+      "name": "Marco",
+      "card_type": "Character",
+      "color": [
+        "Red"
+      ],
+      "cost": 4,
+      "power": 5000,
+      "counter": 1000,
+      "attribute": [
+        "Whitebeard Pirates"
+      ],
+      "effect": "[On Play] Return up to 1 Character with a cost of 3 or less to the owner's hand.",
+      "rarity": "SR",
+      "set_name": "Paramount War",
+      "set_code": "OP02",
+      "card_number": "003",
+      "image": ""
+    },
+    {
+      "id": "OP02-004",
+      "name": "Eustass Kid",
+      "card_type": "Leader",
+      "color": [
+        "Purple"
+      ],
+      "cost": 0,
+      "power": 5000,
+      "counter": 0,
+      "attribute": [
+        "Supernovas",
+        "Kid Pirates"
+      ],
+      "effect": "[Your Turn] Give all of your Characters +1000 power.",
+      "rarity": "L",
+      "set_name": "Paramount War",
+      "set_code": "OP02",
+      "card_number": "004",
+      "image": ""
+    },
+    {
+      "id": "OP03-001",
+      "name": "Charlotte Katakuri",
+      "card_type": "Leader",
+      "color": [
+        "Purple"
+      ],
+      "cost": 0,
+      "power": 5000,
+      "counter": 0,
+      "attribute": [
+        "Big Mom Pirates"
+      ],
+      "effect": "[DON!! x1] [Opponent's Turn] All of your Characters gain +1000 power.",
+      "rarity": "L",
+      "set_name": "Pillars of Strength",
+      "set_code": "OP03",
+      "card_number": "001",
+      "image": ""
+    },
+    {
+      "id": "OP03-002",
+      "name": "Charlotte Linlin",
+      "card_type": "Character",
+      "color": [
+        "Purple"
+      ],
+      "cost": 10,
+      "power": 12000,
+      "counter": 0,
+      "attribute": [
+        "The Four Emperors",
+        "Big Mom Pirates"
+      ],
+      "effect": "[On Play] K.O. up to 1 of your opponent's Characters with a cost of 10 or less.",
+      "rarity": "SEC",
+      "set_name": "Pillars of Strength",
+      "set_code": "OP03",
+      "card_number": "002",
+      "image": ""
+    },
+    {
+      "id": "OP03-003",
+      "name": "Sanji",
+      "card_type": "Character",
+      "color": [
+        "Yellow"
+      ],
+      "cost": 5,
+      "power": 6000,
+      "counter": 0,
+      "attribute": [
+        "Straw Hat Crew"
+      ],
+      "effect": "[On Play] Set up to 1 of your opponent's Characters with a cost of 5 or less as active.",
+      "rarity": "SR",
+      "set_name": "Pillars of Strength",
+      "set_code": "OP03",
+      "card_number": "003",
+      "image": ""
+    }
+  ]
+}
