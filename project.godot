@@ -23,7 +23,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 SceneTransition="*res://scenes/autoload/scene_transition.tscn"
-APIService="*res://scripts/autoload/api_service.gd"
 CardDatabase="*res://scripts/autoload/card_database.gd"
 ImageLoader="*res://scripts/autoload/image_loader.gd"
 

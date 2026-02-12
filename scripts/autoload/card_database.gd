@@ -1,85 +1,75 @@
 extends Node
 
-## CardDatabase - Caché local de cartas y sets
-## Añadir en Project > AutoLoad como "CardDatabase" (después de APIService)
+## CardDatabase - Base de datos local de cartas
+## Carga cartas desde archivo JSON local (sin dependencia de API)
 ##
 ## Señales disponibles:
-##   database_ready                          → caché listo para consultar
-##   update_progress(current, total)         → progreso de descarga inicial
-##   card_added(card_id)                     → nueva carta añadida al caché
+##   database_ready                          → base de datos lista
+##   card_added(card_id)                     → carta añadida
 
 signal database_ready()
-signal update_progress(current: int, total: int)
 signal card_added(card_id: String)
 
-const CACHE_PATH    = "user://cards_cache.json"
-const SETS_PATH     = "user://sets_cache.json"
-const CACHE_MAX_AGE = 86400   # 1 día en segundos
+const DATABASE_PATH = "res://data/cards_database.json"  # Base de datos local
+const BACKUP_PATH   = "user://cards_backup.json"        # Backup de usuario
 
 # Almacenamiento en memoria
-var _cards: Dictionary   = {}   # { "OP01-001": {...} }
-var _sets: Dictionary    = {}   # { "OP01": {...} }
-var _is_ready: bool      = false
-var _total_expected: int = 0
-var _total_loaded: int   = 0
+var _cards: Dictionary = {}   # { "OP01-001": {...} }
+var _sets: Dictionary  = {}   # { "OP01": {...} }
+var _is_ready: bool    = false
 
 
 func _ready() -> void:
-	_load_cache()
-	_connect_api_signals()
+	_load_local_database()
 
 
 # ─────────────────────────────────────────
 #  Inicialización
 # ─────────────────────────────────────────
 
-func _connect_api_signals() -> void:
-	APIService.cards_page_loaded.connect(_on_cards_page_loaded)
-	APIService.sets_loaded.connect(_on_sets_loaded)
-	APIService.error_occurred.connect(_on_api_error)
-
-
-func _load_cache() -> void:
-	var loaded_cards = _read_json(CACHE_PATH)
-	var loaded_sets  = _read_json(SETS_PATH)
-
-	if loaded_cards != null:
-		_cards     = loaded_cards.get("cards", {})
-		var ts     = loaded_cards.get("timestamp", 0)
-
-		if _needs_update(ts):
-			print("CardDatabase: Caché antiguo, actualizando desde API...")
-			_refresh_from_api()
-		else:
-			print("CardDatabase: Caché válido con %d cartas." % _cards.size())
-			_is_ready = true
-			database_ready.emit()
+func _load_local_database() -> void:
+	print("CardDatabase: Cargando base de datos local...")
+	
+	# Intentar cargar desde res:// (incluido en el juego)
+	var db_data = _read_json_from_res(DATABASE_PATH)
+	
+	if db_data == null:
+		# Si falla, intentar backup en user://
+		print("CardDatabase: No se encontró BD local, intentando backup...")
+		db_data = _read_json(BACKUP_PATH)
+	
+	if db_data != null:
+		# Cargar cartas
+		var cards_array = db_data.get("cards", [])
+		for card_data in cards_array:
+			var card_id = card_data.get("id", "")
+			if card_id != "":
+				_cards[card_id] = card_data
+				card_added.emit(card_id)
+		
+		# Cargar sets
+		var sets_array = db_data.get("sets", [])
+		for set_data in sets_array:
+			var set_code = set_data.get("code", "")
+			if set_code != "":
+				_sets[set_code] = set_data
+		
+		print("CardDatabase: ✅ Cargadas %d cartas y %d sets." % [_cards.size(), _sets.size()])
+		_is_ready = true
+		database_ready.emit()
+		
+		# Guardar backup
+		_save_backup(db_data)
 	else:
-		print("CardDatabase: Sin caché. Descargando desde API...")
-		_refresh_from_api()
-
-	if loaded_sets != null:
-		_sets = loaded_sets.get("sets", {})
-
-
-func _refresh_from_api() -> void:
-	_total_loaded   = 0
-	_total_expected = 0
-	_is_ready       = false
-	APIService.fetch_all_cards()
-	APIService.fetch_sets()
-
-
-func _needs_update(timestamp: int) -> bool:
-	var now = int(Time.get_unix_time_from_system())
-	return (now - timestamp) > CACHE_MAX_AGE
+		push_error("CardDatabase: ❌ No se pudo cargar la base de datos local!")
+		_is_ready = false
 
 
 # ─────────────────────────────────────────
 #  API Pública - Consultas
 # ─────────────────────────────────────────
 
-## ¿Está el caché listo?
+## ¿Está la base de datos lista?
 func is_ready() -> bool:
 	return _is_ready
 
@@ -153,82 +143,59 @@ func get_set(set_code: String) -> Dictionary:
 	return _sets.get(set_code, {})
 
 
-## Cuántas cartas hay en caché
+## Cuántas cartas hay en la base de datos
 func get_card_count() -> int:
 	return _cards.size()
 
 
-## Fuerza una actualización desde la API ignorando el caché
-func force_refresh() -> void:
-	print("CardDatabase: Forzando actualización...")
-	_cards.clear()
-	_refresh_from_api()
+## Añadir una carta manualmente (útil para expansiones futuras)
+func add_card(card_data: Dictionary) -> void:
+	var card_id = card_data.get("id", "")
+	if card_id != "":
+		_cards[card_id] = card_data
+		card_added.emit(card_id)
+		print("CardDatabase: Carta añadida: %s" % card_id)
 
 
-# ─────────────────────────────────────────
-#  Callbacks de APIService
-# ─────────────────────────────────────────
-
-func _on_cards_page_loaded(cards: Array, page: int, total_count: int) -> void:
-	if _total_expected == 0:
-		_total_expected = total_count
-		print("CardDatabase: Esperando %d cartas en total..." % total_count)
-
-	for card_data in cards:
-		var id = card_data.get("id", "")
-		if id != "":
-			_cards[id] = card_data
-			card_added.emit(id)
-
-	_total_loaded += cards.size()
-	update_progress.emit(_total_loaded, _total_expected)
-
-	print("CardDatabase: Cargadas %d / %d cartas (página %d)" % [
-		_total_loaded, _total_expected, page
-	])
-
-	# ¿Hemos recibido todo?
-	if _total_loaded >= _total_expected and _total_expected > 0:
-		_save_cards_cache()
-		_is_ready = true
-		database_ready.emit()
-		print("CardDatabase: ¡Base de datos lista! %d cartas en caché." % _cards.size())
+## Añadir un set manualmente
+func add_set(set_data: Dictionary) -> void:
+	var set_code = set_data.get("code", "")
+	if set_code != "":
+		_sets[set_code] = set_data
+		print("CardDatabase: Set añadido: %s" % set_code)
 
 
-func _on_sets_loaded(sets: Array) -> void:
-	for s in sets:
-		var code = s.get("code", "")
-		if code != "":
-			_sets[code] = s
-	_save_sets_cache()
-	print("CardDatabase: %d sets guardados." % _sets.size())
-
-
-func _on_api_error(code: int, message: String) -> void:
-	push_error("CardDatabase: Error de API (%d) — %s" % [code, message])
-	# Si teníamos caché parcial, lo marcamos como listo igualmente
-	if not _is_ready and _cards.size() > 0:
-		push_warning("CardDatabase: Usando caché parcial con %d cartas." % _cards.size())
-		_is_ready = true
-		database_ready.emit()
+## Exportar la base de datos actual a JSON
+func export_database() -> String:
+	var data = {
+		"sets": _sets.values(),
+		"cards": _cards.values()
+	}
+	return JSON.stringify(data, "\t")
 
 
 # ─────────────────────────────────────────
 #  Persistencia
 # ─────────────────────────────────────────
 
-func _save_cards_cache() -> void:
-	var data = {
-		"timestamp": int(Time.get_unix_time_from_system()),
-		"cards": _cards
-	}
-	_write_json(CACHE_PATH, data)
-	print("CardDatabase: Caché de cartas guardado (%d cartas)." % _cards.size())
+func _save_backup(data: Dictionary) -> void:
+	_write_json(BACKUP_PATH, data)
+	print("CardDatabase: Backup guardado en user://")
 
 
-func _save_sets_cache() -> void:
-	var data = {"sets": _sets}
-	_write_json(SETS_PATH, data)
+func _read_json_from_res(path: String):
+	if not FileAccess.file_exists(path):
+		return null
+	var file = FileAccess.open(path, FileAccess.READ)
+	if file == null:
+		push_error("CardDatabase: No se pudo abrir " + path)
+		return null
+	var text = file.get_as_text()
+	file.close()
+	var parsed = JSON.parse_string(text)
+	if parsed == null:
+		push_error("CardDatabase: Error al parsear JSON en " + path)
+	return parsed
 
 
 func _read_json(path: String):

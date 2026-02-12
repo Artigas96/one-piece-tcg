@@ -1,8 +1,7 @@
 extends Control
 
-## Pantalla de colección - Fase 2
-## Carga cartas desde CardDatabase (API + caché local)
-## Las imágenes se descargan en background vía ImageLoader
+## Pantalla de colección - Con base de datos local
+## Carga cartas desde CardDatabase (JSON local)
 
 @onready var cards_grid:    GridContainer = $MarginContainer/VBoxContainer/ScrollContainer/CardsGrid
 @onready var search_bar:    LineEdit      = $MarginContainer/VBoxContainer/SearchAndFilters/SearchBar
@@ -41,12 +40,12 @@ func _ready() -> void:
 		_on_database_ready()
 	else:
 		loading_label.visible = true
-		loading_label.text    = "⏳ Conectando con la API..."
+		loading_label.text    = "⏳ Cargando base de datos..."
 
 
 func _connect_signals() -> void:
 	CardDatabase.database_ready.connect(_on_database_ready)
-	CardDatabase.update_progress.connect(_on_load_progress)
+	# Ya NO conectamos update_progress porque no existe
 	ImageLoader.image_loaded.connect(_on_image_loaded)
 
 
@@ -54,21 +53,17 @@ func _connect_signals() -> void:
 #  Carga de datos
 # ─────────────────────────────────────────
 
-func _on_load_progress(current: int, total: int) -> void:
-	if total > 0:
-		var pct = int(100.0 * current / total)
-		loading_label.text = "⏳ Descargando cartas... %d / %d  (%d%%)" % [current, total, pct]
-
-
 func _on_database_ready() -> void:
 	loading_label.visible = false
 	all_cards = CardDatabase.get_all_cards()
 
 	if all_cards.is_empty():
 		no_cards_label.visible = true
-		no_cards_label.text    = "No se encontraron cartas.\nRevisa tu conexión a internet."
+		no_cards_label.text    = "No hay cartas en la base de datos.\nVerifica que data/cards_database.json existe."
 		return
 
+	print("✅ Collection: %d cartas cargadas" % all_cards.size())
+	
 	displayed_cards = all_cards.duplicate()
 	_update_stats()
 	_display_cards()
@@ -86,6 +81,7 @@ func _display_cards() -> void:
 
 	if displayed_cards.is_empty():
 		no_cards_label.visible = true
+		no_cards_label.text = "No se encontraron cartas con esos filtros."
 		return
 	no_cards_label.visible = false
 
@@ -101,7 +97,7 @@ func _display_cards() -> void:
 		if card_id != "":
 			_card_nodes[card_id] = card_node
 
-		# Solicitar imagen (si ya está en caché se emitirá image_loaded de inmediato)
+		# Solicitar imagen (si ImageLoader está configurado)
 		var image_url = card_data.get("image", "")
 		if card_id != "" and image_url != "":
 			ImageLoader.request_image(card_id, image_url)
@@ -201,3 +197,4 @@ func _on_back_button_pressed() -> void:
 		SceneTransition.change_scene("res://scenes/main_menu.tscn")
 	else:
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+		
