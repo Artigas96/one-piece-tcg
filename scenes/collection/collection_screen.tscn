@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://djp7qh5k8n0bn"]
+[gd_scene format=3 uid="uid://dip28ou65fagx"]
 
-[ext_resource type="Script" path="res://scripts/ui/collection_screen.gd" id="1_1"]
+[ext_resource type="Script" uid="uid://78hhdrkrx6gw" path="res://scripts/ui/collection_screen.gd" id="1_1"]
 
-[node name="CollectionScreen" type="Control"]
+[node name="CollectionScreen" type="Control" unique_id=284288980]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1749095243]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.12, 0.12, 0.15, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=676871967]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,45 +32,45 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1362402068]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="TopBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="TopBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=851071205]
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/TopBar"]
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/TopBar" unique_id=521184679]
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 text = "← Volver"
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/TopBar"]
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/TopBar" unique_id=606953424]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 32
 text = "📚 Mi Colección"
 vertical_alignment = 1
 
-[node name="StatsLabel" type="Label" parent="MarginContainer/VBoxContainer/TopBar"]
+[node name="StatsLabel" type="Label" parent="MarginContainer/VBoxContainer/TopBar" unique_id=580337540]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "0 / 0 cartas"
 vertical_alignment = 1
 
-[node name="SearchAndFilters" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="SearchAndFilters" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=610679111]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="SearchBar" type="LineEdit" parent="MarginContainer/VBoxContainer/SearchAndFilters"]
+[node name="SearchBar" type="LineEdit" parent="MarginContainer/VBoxContainer/SearchAndFilters" unique_id=301350444]
 custom_minimum_size = Vector2(300, 40)
 layout_mode = 2
 placeholder_text = "🔍 Buscar carta..."
 
-[node name="ColorFilter" type="OptionButton" parent="MarginContainer/VBoxContainer/SearchAndFilters"]
+[node name="ColorFilter" type="OptionButton" parent="MarginContainer/VBoxContainer/SearchAndFilters" unique_id=1089025404]
 custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
-item_count = 7
 selected = 0
+item_count = 7
 popup/item_0/text = "Todos los colores"
 popup/item_0/id = 0
 popup/item_1/text = "Rojo"
@@ -86,11 +86,11 @@ popup/item_5/id = 5
 popup/item_6/text = "Negro"
 popup/item_6/id = 6
 
-[node name="TypeFilter" type="OptionButton" parent="MarginContainer/VBoxContainer/SearchAndFilters"]
+[node name="TypeFilter" type="OptionButton" parent="MarginContainer/VBoxContainer/SearchAndFilters" unique_id=773523900]
 custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
-item_count = 5
 selected = 0
+item_count = 5
 popup/item_0/text = "Todos los tipos"
 popup/item_0/id = 0
 popup/item_1/text = "Líder"
@@ -102,11 +102,11 @@ popup/item_3/id = 3
 popup/item_4/text = "Escenario"
 popup/item_4/id = 4
 
-[node name="RarityFilter" type="OptionButton" parent="MarginContainer/VBoxContainer/SearchAndFilters"]
+[node name="RarityFilter" type="OptionButton" parent="MarginContainer/VBoxContainer/SearchAndFilters" unique_id=1178063707]
 custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
-item_count = 7
 selected = 0
+item_count = 7
 popup/item_0/text = "Todas las rarezas"
 popup/item_0/id = 0
 popup/item_1/text = "Common (C)"
@@ -122,11 +122,14 @@ popup/item_5/id = 5
 popup/item_6/text = "Leader (L)"
 popup/item_6/id = 6
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+[node name="SetFilter" type="OptionButton" parent="MarginContainer/VBoxContainer/SearchAndFilters" unique_id=1985597866]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer" unique_id=823116818]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="CardsGrid" type="GridContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+[node name="CardsGrid" type="GridContainer" parent="MarginContainer/VBoxContainer/ScrollContainer" unique_id=416530359]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -134,7 +137,7 @@ theme_override_constants/h_separation = 15
 theme_override_constants/v_separation = 15
 columns = 7
 
-[node name="LoadingLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="LoadingLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1648636083]
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
@@ -142,7 +145,7 @@ text = "⏳ Cargando cartas..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NoCardsLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="NoCardsLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=705608084]
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
@@ -150,6 +153,20 @@ text = "No hay cartas en tu colección.
 ¡Empieza a coleccionar!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Pagination" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1593192734]
+layout_mode = 2
+
+[node name="PrevButton" type="Button" parent="MarginContainer/VBoxContainer/Pagination" unique_id=1359482989]
+layout_mode = 2
+text = "◀ Anterior"
+
+[node name="PageLabel" type="Label" parent="MarginContainer/VBoxContainer/Pagination" unique_id=1986545050]
+layout_mode = 2
+
+[node name="NextButton" type="Button" parent="MarginContainer/VBoxContainer/Pagination" unique_id=448749281]
+layout_mode = 2
+text = "Siguiente ▶"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TopBar/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/SearchAndFilters/SearchBar" to="." method="_on_search_text_changed"]
