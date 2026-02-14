@@ -106,7 +106,7 @@ def normalize_card_data(raw_card: Dict) -> Dict:
         "set_name": set_info.get("name", ""),
         "set_code": set_info.get("id", ""),
         "card_number": raw_card.get("number", ""),
-        "image": images.get("png") or images.get("jpg") or ""
+        "image": images.get("large") or images.get("small") or ""
     }
 
 def main():
